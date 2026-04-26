@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Saudi Community in Japan - Your community. Your voice. Your home away from home.">
+    <title>Saudi Community in Japan | SCJ</title>
+    
+    <link rel="icon" type="image/webp" href="ll.webp">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/webp" href="/ll.webp">
+    <link rel="apple-touch-icon" href="/ll.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Official Brand Colors */
+            --dark-teal: #1A262B; 
+            --jade: #42625C;
+            --bronze: #AE7637;
+            --crimson: #A02029;
+            
+            /* Secondary Colors */
+            --light-gray: #F5F5F7; 
+            --plum: #6E3E5A;
+            --cream: #FAF6F0; 
+            --black: #000000;
+            --white: #FFFFFF;
+            
+            /* Typography */
+            --font-primary: 'Public Sans', sans-serif;
+            --font-arabic: 'Noto Sans Arabic', sans-serif;
+            
+            /* Shadows */
+            --shadow-sm: 0 8px 24px rgba(26, 38, 43, 0.06);
+            --shadow-md: 0 16px 40px rgba(26, 38, 43, 0.1);
+            --shadow-lg: 0 24px 56px rgba(26, 38, 43, 0.14);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background: var(--cream);
+            color: var(--dark-teal);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: font-family 0.3s ease;
+        }
+        
+        body[dir="rtl"] {
+            font-family: var(--font-arabic);
+        }
+        
+        /* SCJ Custom Geometric Pattern Overlay */
+        .pattern-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 350px;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"><path d="M40 0L80 40L40 80L0 40Z" fill="none" stroke="%2342625C" stroke-width="0.5" opacity="0.1"/><path d="M20 20L60 60M60 20L20 60" stroke="%2342625C" stroke-width="0.5" opacity="0.1"/></svg>') repeat;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Navigation */
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: transparent;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-decoration: none;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-camel {
+            width: 50px;
+            height: 50px;
+            transition: transform 0.4s ease;
+            object-fit: contain;
+        }
+
+        .logo-container:hover .logo-camel {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--dark-teal);
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+        
+        .logo-text span {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--dark-teal);
+            opacity: 0.7;
+            text-transform: uppercase;
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--dark-teal);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--bronze);
+        }
+
+        .nav-btn {
+            background: var(--jade);
+            color: var(--white);
+            padding: 8px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            background: var(--dark-teal);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26, 38, 43, 0.15);
+        }
+        
+        .lang-switcher {
+            display: flex;
+            background: var(--white);
+            padding: 5px;
+            border-radius: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--dark-teal);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        
+        .lang-btn.active {
+            background: var(--jade);
+            color: var(--white);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-teal);
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 10rem 2rem 4rem;
+            position: relative;
+            background: var(--cream);
+        }
+        
+        .hero-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--bronze);
+            background: #F2E6D5;
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--dark-teal);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+        
+        .hero-title .highlight { color: #E23D47; }
+        
+        .hero-description {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--dark-teal);
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            max-width: 500px;
+            font-weight: 500;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 40px;
+            text-align: center;
+        }
+        
+        .btn-primary { background: #4E6C65; color: var(--white); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(78, 108, 101, 0.2); }
+        .btn-secondary { background: var(--white); color: var(--dark-teal); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        .visual-card {
+            background: #161A1D;
+            padding: 4.5rem;
+            border-radius: 32px;
+            position: relative;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
+        }
+        
+        .visual-stats { position: relative; z-index: 1; }
+        .stat { margin-bottom: 3.5rem; }
+        .stat:last-child { margin-bottom: 0; }
+        .stat-number { font-size: 4.5rem; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 0.9rem; color: var(--bronze); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+        
+        section { padding: 8rem 2rem; position: relative; }
+        .section-alt { background: var(--light-gray); }
+        .section-container { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-label { font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--bronze); margin-bottom: 1rem; font-weight: 700; }
+        .section-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: var(--dark-teal); margin-bottom: 1.5rem; letter-spacing: -0.5px; }
+        .section-description { font-size: 1.15rem; color: var(--jade); max-width: 800px; margin: 0 auto; line-height: 1.8; }
+        
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-top: 4rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        
+        .card { background: var(--white); padding: 3rem 2.5rem; transition: all 0.4s ease; position: relative; box-shadow: var(--shadow-sm); border-top: 4px solid transparent; height: 100%; }
+        .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); border-top-color: var(--crimson); }
+        .card-icon { width: 60px; height: 60px; margin-bottom: 2rem; color: var(--bronze); transition: color 0.3s ease; }
+        .card:hover .card-icon { color: var(--jade); }
+        .card-icon svg { width: 100%; height: 100%; stroke-width: 1.5; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .card-title { font-size: 1.4rem; font-weight: 700; color: var(--dark-teal); margin-bottom: 1rem; }
+        .card-text { color: var(--jade); line-height: 1.7; font-size: 1rem; }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .gallery-item { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 0, 0, 0.05); aspect-ratio: 4/3; box-shadow: var(--shadow-sm); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(26, 38, 43, 0.95), transparent); padding: 3rem 1.5rem 1.5rem; color: var(--cream); transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .gallery-item:hover .gallery-overlay { transform: translateY(0); }
+        .gallery-caption { font-weight: 600; font-size: 1.2rem; color: var(--white); text-transform: uppercase; letter-spacing: 1px; border-left: 3px solid var(--bronze); padding-left: 0.8rem; }
+        
+        .calendar-container { margin-top: 4rem; max-width: 1200px; margin-left: auto; margin-right: auto; background: var(--white); padding: 1rem; box-shadow: var(--shadow-sm); }
+        embed { border-radius: 8px; }
+
+        .contact-form-container { max-width: 800px; margin: 0 auto; background: var(--white); padding: 3rem; border-radius: 12px; box-shadow: var(--shadow-sm); position: relative; z-index: 1; }
+        .contact-form { display: grid; gap: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group label { font-weight: 600; color: var(--dark-teal); font-size: 0.95rem; }
+        .form-group input, .form-group select, .form-group textarea { padding: 1rem; border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 4px; font-family: inherit; font-size: 1rem; background: var(--light-gray); color: var(--dark-teal); transition: all 0.3s ease; width: 100%; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--bronze); background: var(--white); box-shadow: 0 0 0 3px rgba(174, 118, 55, 0.1); }
+        .contact-form .btn { margin-top: 1rem; justify-self: start; }
+        
+        /* New Style for Mailing List Checkbox */
+        .checkbox-group {
+            flex-direction: row;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            transform: scale(1.2);
+            accent-color: var(--jade);
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+        }
+        .checkbox-group label {
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Form Status Message */
+        #form-status {
+            display: none;
+            padding: 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .status-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        footer { background: var(--dark-teal); color: var(--cream); padding: 5rem 2rem 2rem; position: relative; border-top: 4px solid var(--bronze); }
+        .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .footer-brand { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--bronze); letter-spacing: 1px; }
+        .footer-description { line-height: 1.8; color: rgba(250, 246, 240, 0.8); margin-bottom: 2rem; max-width: 350px; }
+        .social-links { display: flex; gap: 1rem; }
+        .social-link { width: 45px; height: 45px; border: 1px solid rgba(174, 118, 55, 0.4); display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--bronze); transition: all 0.3s ease; }
+        .social-link svg { width: 20px; height: 20px; stroke: currentColor; fill: none; }
+        .social-link:hover { background: var(--bronze); color: var(--dark-teal); }
+        .footer-section h3 { font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--white); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a { color: rgba(250, 246, 240, 0.7); text-decoration: none; transition: color 0.3s ease; font-size: 0.95rem; }
+        .footer-links a:hover { color: var(--bronze); }
+        .footer-bottom { border-top: 1px solid rgba(174, 118, 55, 0.2); padding-top: 2rem; text-align: center; color: rgba(250, 246, 240, 0.5); font-size: 0.9rem; }
+        
+        /* Responsive Mobile Styles */
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; gap: 4rem; text-align: center; }
+            .hero-description { margin: 0 auto 3rem auto; }
+            .cta-buttons { justify-content: center; }
+            .footer-container { grid-template-columns: 1fr 1fr; }
+        }
+        
+        @media (max-width: 850px) {
+            .mobile-menu-btn { display: block; }
+            .nav-container { flex-wrap: wrap; }
+            .nav-right { width: 100%; justify-content: space-between; margin-top: 1rem; }
+            
+            /* Hidden by default on mobile, triggered by JS */
+            .nav-links { 
+                display: none; 
+                width: 100%; 
+                flex-direction: column; 
+                gap: 1rem; 
+                background: var(--white); 
+                padding: 1.5rem; 
+                border-radius: 12px; 
+                box-shadow: var(--shadow-sm);
+                margin-bottom: 1rem;
+            }
+            .nav-links.active { display: flex; }
+            
+            .nav-btn { display: none; } /* Hide secondary button on mobile to save space */
+            .lang-switcher { margin-left: auto; }
+        }
+        
+        @media (max-width: 768px) {
+            /* Increased top padding from 8rem to 12rem so the taller mobile menu doesn't hide the text! */
+            .hero { padding: 12rem 1.5rem 3rem; }
+            .visual-card { padding: 2.5rem; }
+            .stat-number { font-size: 3rem; }
+            section { padding: 4rem 1.5rem; }
+            .section-header { margin-bottom: 3rem; }
+            .contact-form-container { padding: 2rem 1.5rem; }
+            .contact-form .btn { justify-self: stretch; width: 100%; text-align: center; }
+            
+            /* Stack Grid Columns cleanly on mobile */
+            .grid-3, .grid-4 { grid-template-columns: 1fr; margin-top: 2rem; }
+            .footer-container { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+        
+        /* RTL Adjustments */
+        [dir="rtl"] .gallery-caption { border-left: none; border-right: 3px solid var(--bronze); padding-left: 0; padding-right: 0.8rem; }
+        [dir="rtl"] .contact-form .btn { justify-self: end; }
+        @media (max-width: 768px) { [dir="rtl"] .contact-form .btn { justify-self: stretch; } }
+    </style>
+</head>
+<body>
+    <div class="pattern-overlay"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo-container">
+                <img src="ll.webp" alt="SCJ Logo" class="logo-camel">
+                <div class="logo-text">
+                    SCJ
+                    <span data-en="Saudi Community in Japan" data-ar="المجتمع السعودي في اليابان" data-ja="サウジコミュニティ・イン・ジャパン">Saudi Community in Japan</span>
+                </div>
+            </a>
+            
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+
+            <div class="nav-right">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" data-en="Home" data-ar="الرئيسية" data-ja="ホーム" onclick="toggleMenu()">Home</a></li>
+                    <li><a href="#about" data-en="About" data-ar="من نحن" data-ja="私たちについて" onclick="toggleMenu()">About</a></li>
+                    <li><a href="#services" data-en="Services" data-ar="خدماتنا" data-ja="サービス" onclick="toggleMenu()">Services</a></li>
+                    <li><a href="#gallery" data-en="Gallery" data-ar="المعرض" data-ja="ギャラリー" onclick="toggleMenu()">Gallery</a></li>
+                    <li><a href="#events" data-en="Events" data-ar="الفعاليات" data-ja="イベント" onclick="toggleMenu()">Events</a></li>
+                    <li><a href="#contact-us" data-en="Contact Us" data-ar="تواصل معنا" data-ja="お問い合わせ" onclick="toggleMenu()">Contact Us</a></li>
+                </ul>
+                <a href="#contact-us" class="nav-btn" data-en="Contact Us" data-ar="تواصل معنا" data-ja="お問い合わせ">Contact Us</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="switchLanguage('ar')">العربية</button>
+                    <button class="lang-btn" onclick="switchLanguage('ja')">日本語</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-label" data-en="WELCOME TO" data-ar="مرحباً بكم في" data-ja="ようこそ">WELCOME TO</div>
+                <h1 class="hero-title">
+                    <span data-en="Saudi Community" data-ar="المجتمع السعودي" data-ja="サウジコミュニティ">Saudi Community</span><br>
+                    <span class="highlight" data-en="in Japan" data-ar="في اليابان" data-ja="イン・ジャパン">in Japan</span>
+                </h1>
+                <p class="hero-description" data-en="Your community. Your voice. Your home away from home." data-ar="مجتمعك. صوتك. بيتك بعيداً عن البيت." data-ja="あなたのコミュニティ。あなたの声。日本での第二の故郷。">
+                    Your community. Your voice. Your home away from home.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#about" class="btn btn-primary" data-en="Learn More" data-ar="اعرف المزيد" data-ja="もっと詳しく知る">Learn More</a>
+                    <a href="#contact-us" class="btn btn-secondary" data-en="Join Us" data-ar="انضم إلينا" data-ja="参加する">Join Us</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="visual-card">
+                    <div class="visual-stats">
+                        <div class="stat">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label" data-en="ACTIVE MEMBERS" data-ar="أعضاء نشطين" data-ja="アクティブメンバー">ACTIVE MEMBERS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label" data-en="FOUNDERS" data-ar="مؤسسان" data-ja="創設者">FOUNDERS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">1.5</div>
+                            <div class="stat-label" data-en="YEARS OF GROWTH" data-ar="سنة نمو متسارع" data-ja="急成長">YEARS OF GROWTH</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label" data-en="About SCJ" data-ar="عن SCJ" data-ja="SCJについて">About SCJ</div>
+                <h2 class="section-title" data-en="Who We Are" data-ar="من نحن" data-ja="私たちについて">Who We Are</h2>
+                <p class="section-description" data-en="SCJ is a private entity transitioning into an official non-profit organization, designed to be the central hub for Saudis living in Japan and a trusted bridge for those engaging with Japanese society." data-ar="يعدّ SCJ كيان خاص في طور التحول إلى منظمة غير ربحية رسمية. يهدف إلى أن يكون المركز الرئيسي للسعوديين المقيمين في اليابان، ومصدرًا موثوقًا لمن يرغبون في التفاعل مع المجتمع الياباني." data-ja="SCJは、現在NPO（特定非営利活動法人）への移行を進めている民間団体です。日本に住むサウジアラビア人のための中心的な拠点として、また日本での生活や仕事に関心を持つサウジアラビア人の頼れる情報源として活動しています。">
+                    SCJ is a private entity transitioning into an official non-profit organization, designed to be the central hub for Saudis living in Japan and a trusted bridge for those engaging with Japanese society.
+                </p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3 class="card-title" data-en="Our Identity" data-ar="هويّتنا" data-ja="私たちのアイデンティティ">Our Identity</h3>
+                    <p class="card-text" data-en="A private entity becoming an official NPO — built to last beyond any single leader or generation." data-ar="كيان خاص في طريقه للتسجيل كمنظمة غير ربحية رسمية — مبني ليدوم لما هو أبعد من أي قائد أو جيل." data-ja="現在NPOへの登録移行中の民間団体です。特定のリーダーや世代に依存せず、長く続く組織を目指しています。">
+                        A private entity becoming an official NPO — built to last beyond any single leader or generation.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+                    </div>
+                    <h3 class="card-title" data-en="Our Goal" data-ar="هدفنا" data-ja="私たちの目的">Our Goal</h3>
+                    <p class="card-text" data-en="The central hub for Saudis in Japan and a trusted bridge for integration with Japanese society, workforce, and culture." data-ar="المحور الرئيسي للسعوديين في اليابان وجسر موثوق لمن يرغب في الاندماج مع المجتمع الياباني وسوق العمل والثقافة." data-ja="日本にいるサウジアラビア人の中心的な拠点であり、日本の社会・文化・就職市場に関わりたい方々をつなぐ橋渡し役です。">
+                        The central hub for Saudis in Japan and a trusted bridge for integration with Japanese society, workforce, and culture.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3 class="card-title" data-en="Our Promise" data-ar="وعدنا" data-ja="私たちの約束">Our Promise</h3>
+                    <p class="card-text" data-en="Building a cohesive community where every Saudi is supported, respected, and never left alone." data-ar="بناء مجتمع متماسك وقوي حيث يحظى كل سعودي بالدعم والاحترام ولا يُترك وحيداً." data-ja="すべてのサウジアラビア人がサポートされ、尊重され、ひとりで困難に向き合わなくていい、強くまとまったコミュニティをつくります。">
+                        Building a cohesive community where every Saudi is supported, respected, and never left alone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label" data-en="Our Values" data-ar="قيمنا" data-ja="コアバリュー">Our Values</div>
+                <h2 class="section-title" data-en="What We Believe In" data-ar="ما نؤمن به" data-ja="私たちが大切にしていること">What We Believe In</h2>
+            </div>
+            
+            <div class="grid-4">
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="card-title" data-en="Inclusivity" data-ar="الاحتواء" data-ja="インクルーシビティ">Inclusivity</h3>
+                    <p class="card-text" data-en="A place for everyone. We welcome all Saudis — students and residents — without discrimination." data-ar="مكان للجميع. يرحّب مجتمعنا بجميع السعوديين — الطلاب والمقيمين — دون تمييز." data-ja="SCJは家族連れ・学生・社会人を問わず、すべてのサウジアラビア人を歓迎します。来たばかりでも、長年日本にいても、ここにあなたの居場所があります。">
+                        A place for everyone. We welcome all Saudis — students and residents — without discrimination.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <h3 class="card-title" data-en="Support" data-ar="الدعم" data-ja="サポート">Support</h3>
+                    <p class="card-text" data-en="The safe circle. No member is left alone. From work challenges to daily life, we provide a real safety net." data-ar="الدائرة الآمنة. نوفّر دائرة آمنة لا يُترك فيها أي عضو وحيداً." data-ja="誰もひとりで困難に向き合わなくてもいい「安心できる場所」を提供しています。仕事の悩みから日常生活のことまで、コミュニティ全体がセーフティネットになります。">
+                        The safe circle. No member is left alone. From work challenges to daily life, we provide a real safety net.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    </div>
+                    <h3 class="card-title" data-en="Empowerment" data-ar="التمكين" data-ja="エンパワーメント">Empowerment</h3>
+                    <p class="card-text" data-en="Center for growth. Committed to your personal, academic, and professional development." data-ar="مركز للنمو. يلتزم بتطويرك الشخصي والأكاديمي والمهني." data-ja="成長のための場所。SCJは、個人としての成長、学業、そして仕事上の発展を全力でサポートします。">
+                        Center for growth. Committed to your personal, academic, and professional development.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3 class="card-title" data-en="Collaboration" data-ar="التعاون" data-ja="コラボレーション">Collaboration</h3>
+                    <p class="card-text" data-en="Building bridges. Facilitating meaningful connections between Saudi residents and Japanese organizations." data-ar="بناء الجسور. نُيسّر التواصل الهادف بين المقيمين السعوديين والمنظمات اليابانية." data-ja="橋をかける。サウジアラビア人のプロフェッショナルと日本の組織との間に意味のあるつながりを生み出します。">
+                        Building bridges. Facilitating meaningful connections between Saudi residents and Japanese organizations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt" id="services">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label" data-en="What We Offer" data-ar="ما نقدمه" data-ja="私たちが提供するもの">What We Offer</div>
+                <h2 class="section-title" data-en="Services for Every Member" data-ar="خدمات لكل عضو" data-ja="すべてのメンバーへのサービス">Services for Every Member</h2>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    </div>
+                    <h3 class="card-title" data-en="Professional Support" data-ar="الدعم المهني" data-ja="キャリアサポートと権利擁護">Professional Support</h3>
+                    <p class="card-text" data-en="Help finding your footing in the Japanese job market, connecting with opportunities, and ensuring your rights and expertise are respected." data-ar="نساعد الأعضاء في إيجاد موطئ قدم في سوق العمل الياباني والتواصل مع الفرص المناسبة، وضمان احترام حقوقهم وخبراتهم." data-ja="日本の労働市場での足場を固め、関連する機会を見つけ、職場での権利や専門性が適切に尊重されるよう支援します。">
+                        Help finding your footing in the Japanese job market, connecting with opportunities, and ensuring your rights and expertise are respected.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    </div>
+                    <h3 class="card-title" data-en="Academic Guidance" data-ar="التوجيه الأكاديمي" data-ja="進学サポート">Academic Guidance</h3>
+                    <p class="card-text" data-en="Clear guidance on admission procedures, visa requirements, and university life in Japan. New students connected with advanced members." data-ar="توجيه واضح بشأن إجراءات القبول ومتطلبات التأشيرة والحياة الجامعية في اليابان." data-ja="入学手続き・ビザ要件・日本の大学生活についてわかりやすくアドバイスします。新入生は先輩メンバーとつながることができます。">
+                        Clear guidance on admission procedures, visa requirements, and university life in Japan. New students connected with advanced members.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-10 10c0 5.523 4.477 10 10 10s10-4.477 10-10A10 10 0 0 0 12 2z"/><path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M12 14v4M12 6v4M8 12H4M20 12h-4"/></svg>
+                    </div>
+                    <h3 class="card-title" data-en="Cultural Exchange" data-ar="التبادل الثقافي" data-ja="文化交流・発信">Cultural Exchange</h3>
+                    <p class="card-text" data-en="Presenting Saudi culture to Japanese audiences through events, exhibitions, and community volunteering." data-ar="نقدّم الثقافة السعودية للجمهور الياباني من خلال فعاليات ومعارض وتطوع مجتمعي." data-ja="質の高いイベント・展示・ボランティア活動を通じて、サウジアラビアの文化を日本社会に紹介します。">
+                        Presenting Saudi culture to Japanese audiences through events, exhibitions, and community volunteering.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label" data-en="Community Life" data-ar="حياة المجتمع" data-ja="コミュニティライフ">Community Life</div>
+                <h2 class="section-title" data-en="Moments We Share" data-ar="لحظات نتشاركها" data-ja="私たちが共有する時間">Moments We Share</h2>
+                <p class="section-description" data-en="From winter ski trips in Nagano to casual sports and cultural workshops, see how our community comes together." data-ar="من رحلات التزلج الشتوية في ناغانو إلى الرياضات غير الرسمية وورش العمل الثقافية، شاهد كيف يجتمع مجتمعنا." data-ja="冬の長野へのスキーツアーからカジュアルなスポーツや文化的なワークショップまで、私たちのコミュニティがどのように集まっているかをご覧ください。">
+                    From winter ski trips in Nagano to casual sports and cultural workshops, see how our community comes together.
+                </p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="39577017-0e75-47ea-9921-e98263313246.jpg" alt="Community Meeting">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption" data-en="Community Meetings" data-ar="اجتماعات المجتمع" data-ja="コミュニティミーティング">Community Meetings</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="rs=w_1280,h_960.webp" alt="Nagano Ski Trip">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption" data-en="Nagano Ski Trips" data-ar="رحلات التزلج في ناغانو" data-ja="長野スキーツアー">Nagano Ski Trips</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="rs=w_1280,h_960 (1).webp" alt="Cultural Cooking Workshop">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption" data-en="Cultural Workshops" data-ar="ورش عمل ثقافية" data-ja="文化ワークショップ">Cultural Workshops</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="CommunityFootball.jpeg" alt="Community Football">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption" data-en="Sports & Recreation" data-ar="الرياضة والترفيه" data-ja="スポーツとレクリエーション">Sports & Recreation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt" id="events">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label" data-en="2026 - 2027" data-ar="٢٠٢٦ - ٢٠٢٧" data-ja="2026 - 2027">2026 - 2027</div>
+                <h2 class="section-title" data-en="Annual Events Calendar" data-ar="جدول الفعاليات السنوي" data-ja="年間イベントカレンダー">Annual Events Calendar</h2>
+                <p class="section-description" data-en="View our complete calendar of cultural celebrations, outdoor adventures, and community gatherings throughout the year." data-ar="اطلع على جدولنا الكامل للاحتفالات الثقافية والمغامرات الخارجية والتجمعات المجتمعية على مدار السنة." data-ja="一年を通じた文化的祭典、アウトドアアドベンチャー、コミュニティの集まりの完全なカレンダーをご覧ください。">
+                    View our complete calendar of cultural celebrations, outdoor adventures, and community gatherings throughout the year.
+                </p>
+            </div>
+            
+            <div class="calendar-container">
+                <embed src="calendar.pdf" type="application/pdf" width="100%" height="900px" style="border: none;" />
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="calendar.pdf" download class="btn btn-primary" data-en="Download Calendar PDF" data-ar="تحميل جدول الفعاليات" data-ja="カレンダーPDFをダウンロード">Download Calendar PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-us">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label" data-en="Get in Touch" data-ar="تواصل معنا" data-ja="お問い合わせ">Get in Touch</div>
+                <h2 class="section-title" data-en="Join Us & Volunteer" data-ar="انضم إلينا وتطوع" data-ja="参加・ボランティア">Join Us & Volunteer</h2>
+                <p class="section-description" data-en="Want to become a member, volunteer, or have a general inquiry? Reach out to us below." data-ar="هل ترغب في أن تصبح عضوًا، أو تتطوع، أو لديك استفسار عام؟ تواصل معنا أدناه." data-ja="メンバーやボランティアになりたい方、または一般的なお問い合わせがありますか？ 以下からご連絡ください。">
+                    Want to become a member, volunteer, or have a general inquiry? Reach out to us below.
+                </p>
+            </div>
+            
+            <div class="contact-form-container">
+                <form id="scj-contact-form" action="https://formspree.io/f/mlgavaro" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <label for="name" data-en="Full Name" data-ar="الاسم الكامل" data-ja="氏名">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-en="Email Address" data-ar="البريد الإلكتروني" data-ja="メールアドレス">Email Address</label>
+                        <input type="email" id="email" name="_replyto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" data-en="Interest" data-ar="الاهتمام" data-ja="関心事項">Interest</label>
+                        <select id="subject" name="interest">
+                            <option value="Join Us" data-en="Join Us" data-ar="انضم إلينا" data-ja="参加する">Join Us</option>
+                            <option value="Volunteer" data-en="Volunteer" data-ar="تطوع" data-ja="ボランティア">Volunteer</option>
+                            <option value="General Inquiry" data-en="General Inquiry" data-ar="استفسار عام" data-ja="一般的なお問い合わせ">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-en="Message" data-ar="الرسالة" data-ja="メッセージ">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter_opt_in" value="Yes">
+                        <label for="newsletter" data-en="Sign up for our mailing list" data-ar="اشترك في قائمتنا البريدية" data-ja="メーリングリストに登録する">Sign up for our mailing list</label>
+                    </div>
+                    
+                    <input type="hidden" name="_subject" value="New SCJ Website Inquiry">
+                    <input type="text" name="_gotcha" style="display:none" />
+
+                    <p id="form-status"></p>
+
+                    <button type="submit" class="btn btn-primary" data-en="Send Message" data-ar="إرسال الرسالة" data-ja="メッセージを送信">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-brand">SCJ</div>
+                <p class="footer-description" data-en="Building bridges between Saudi culture and Japanese society, one connection at a time." data-ar="بناء الجسور بين الثقافة السعودية والمجتمع الياباني، رابطاً تلو الآخر." data-ja="サウジアラビアの文化と日本社会の間に架け橋を築き、一度に一つのつながりを作ります。">
+                    Building bridges between Saudi culture and Japanese society, one connection at a time.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-en="Quick Links" data-ar="روابط سريعة" data-ja="クイックリンク">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home" data-en="Home" data-ar="الرئيسية" data-ja="ホーム">Home</a></li>
+                    <li><a href="#about" data-en="About" data-ar="من نحن" data-ja="私たちについて">About</a></li>
+                    <li><a href="#services" data-en="Services" data-ar="خدماتنا" data-ja="サービス">Services</a></li>
+                    <li><a href="#gallery" data-en="Gallery" data-ar="المعرض" data-ja="ギャラリー">Gallery</a></li>
+                    <li><a href="#events" data-en="Events" data-ar="الفعاليات" data-ja="イベント">Events</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-en="Community" data-ar="المجتمع" data-ja="コミュニティ">Community</h3>
+                <ul class="footer-links">
+                    <li><a href="#contact-us" data-en="Join Us" data-ar="انضم إلينا" data-ja="参加する">Join Us</a></li>
+                    <li><a href="#contact-us" data-en="Volunteers" data-ar="المتطوعون" data-ja="ボランティア">Volunteers</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-en="Contact" data-ar="تواصل معنا" data-ja="連絡先">Contact</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:saudicomjp@gmail.com">saudicomjp@gmail.com</a></li>
+                    <li><a href="https://scjclub.com">www.scjclub.com</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p data-en="© 2026 Saudi Community in Japan. All rights reserved." data-ar="© ٢٠٢٦ المجتمع السعودي في اليابان. جميع الحقوق محفوظة." data-ja="© 2026 サウジコミュニティ・イン・ジャパン. 無断転載を禁じます。">© 2026 Saudi Community in Japan. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Language Switcher
+        function switchLanguage(lang) {
+            const html = document.documentElement;
+            const body = document.body;
+            
+            // Update direction
+            html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            html.setAttribute('lang', lang);
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-en]').forEach(el => {
+                if (el.hasAttribute(`data-${lang}`)) {
+                    el.textContent = el.getAttribute(`data-${lang}`);
+                }
+            });
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (window.innerWidth <= 850) {
+                navLinks.classList.toggle('active');
+            }
+        }
+
+        // Smooth Scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // AJAX Form Submission for Formspree (No page reload)
+        const form = document.getElementById("scj-contact-form");
+        const statusMsg = document.getElementById("form-status");
+
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault(); // Prevents the default browser redirect
+            
+            const data = new FormData(event.target);
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // Change button text while sending
+            submitBtn.innerHTML = "Sending...";
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Success! Show message and clear form
+                    statusMsg.className = "status-success";
+                    statusMsg.innerHTML = "Thank you! Your message has been sent successfully.";
+                    statusMsg.style.display = "block";
+                    form.reset();
+                } else {
+                    // Formspree returned an error
+                    statusMsg.className = "status-error";
+                    statusMsg.innerHTML = "Oops! There was a problem submitting your form.";
+                    statusMsg.style.display = "block";
+                }
+            } catch (error) {
+                // Network error
+                statusMsg.className = "status-error";
+                statusMsg.innerHTML = "Oops! There was a network error. Please try again.";
+                statusMsg.style.display = "block";
+            }
+            
+            // Reset button
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+            
+            // Hide the status message after 5 seconds
+            setTimeout(() => {
+                statusMsg.style.display = "none";
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
